@@ -12,6 +12,15 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      animation: {
+        flash: "flash 0.5s ease-in-out",
+      },
+      keyframes: {
+        flash: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+      },
     },
   },
   plugins: [],
