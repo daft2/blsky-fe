@@ -1,40 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Blsky Chat Challenge
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project is a **real-time chat application** built as a submission for the **Frontend Developer** position at **Blsky**. It features two chat windows, each representing a different sender. Messages sent from one window appear in the other, with a flashing effect when a new message is received. Messages persist even after refreshing or closing the tab.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- **Two chat windows** (Left & Right) communicating via WebSockets.
+- **Flashing effect** when a new message is received.
+- **Message persistence** using localStorage.
+- **Responsive & clean UI** built with Tailwind CSS.
+- **WebSocket server** using Node.js to handle real-time communication.
+
+## Technologies Used
+
+- **Next.js 15** (Frontend framework)
+- **Tailwind CSS** (Styling)
+- **TypeScript** (Type safety)
+- **WebSockets (ws)** (Real-time communication)
+- **Node.js** (Backend WebSocket server)
+
+## Setup Instructions
+
+### Prerequisites
+
+- **Node.js** (v18+ recommended)
+- **Yarn** or **npm** installed
+
+### Installation
+
+1. **Clone the repository:**
+   ```sh
+   git clone <https://github.com/daft2/blsky-fe>
+   cd blsky-fe
+   ```
+2. **Install dependencies:**
+   ```sh
+   yarn install  # or npm install
+   ```
+
+### Running the WebSocket Server
+
+Start the WebSocket server:
+
+```sh
+node server/server.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will run the WebSocket server on `ws://localhost:4000`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Running the Frontend
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Start the Next.js application:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```sh
+yarn dev  # or npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This will start the frontend on `http://localhost:3000`.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+blsky-chat/
+│── server/
+│   ├── server.ts     # WebSocket server
+│── src/
+│   ├── components/
+│   │   ├── ChatBox.tsx  # Chat UI component
+│   ├── pages/
+│   │   ├── index.tsx    # Main page with chat windows
+│── public/
+│── styles/
+│── package.json
+│── tsconfig.json
+│── README.md
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## How It Works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **WebSocket Communication:**
 
-## Deploy on Vercel
+   - When a user types a message and sends it, the message is sent to the WebSocket server.
+   - The server then broadcasts the message to all connected clients.
+   - The receiving client updates its state and displays the new message.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Message Persistence:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+   - Messages are stored in `localStorage` to persist across page reloads.
+
+3. **Chat UI Logic:**
+
+   - Messages align **left or right** depending on the sender.
+   - The chat box has a **scrollable history** with a maximum height.
+   - The **flashing effect** is triggered when a new message arrives.
+
+## Demo
+
+- Run the app and open **two browser windows**.
+- Type a message in one window and observe it appearing in the other with a **flashing effect**.
+- Refresh the page to see messages persist.
+
+## License
+
+This project is for evaluation purposes only and is not licensed for commercial use.
+
+---
+
+Made with ❤️ for Blsky
+
