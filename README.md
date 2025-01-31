@@ -97,7 +97,7 @@ blsky-chat/
 
 ## Demo
 
-- Run the app and open **two browser windows**.
+- Run the app
 - Type a message in one window and observe it appearing in the other with a **flashing effect**.
 - Refresh the page to see messages persist.
 
